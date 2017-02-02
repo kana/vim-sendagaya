@@ -107,7 +107,7 @@ function! s:setup()
   nnoremap <silent> K  :<C-u>call <SID>what()<CR>
   autocmd CursorMoved <buffer>  call s:what()
   autocmd BufLeave <buffer>  call s:stop_location_monitor()
-  highlight vpsCurrent term=bold cterm=bold ctermfg=Black ctermbg=Cyan
+  highlight vpsCurrent term=bold cterm=bold ctermfg=Black ctermbg=Cyan gui=bold guifg=Black guibg=Cyan
   syntax match vpsCurrent /@/
   call s:start_location_monitor()
 endfunction
