@@ -125,7 +125,6 @@ endfunction
 
 function! s:start_location_monitor()
   let b:job = job_start('stdbuf --output=L CoreLocationCLI', {'out_cb': function('s:on_update')})
-  let channel = job_getchannel(b:job)
 endfunction
 
 function! s:on_update(channel, message)
