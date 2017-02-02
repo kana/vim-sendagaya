@@ -104,6 +104,7 @@ function! s:setup()
   let b:nram = nram
   let b:pchar = 0
   let b:bounds = bounds
+  let b:cursor_adjusted = 0
   nnoremap <silent> K  :<C-u>call <SID>what()<CR>
   autocmd CursorMoved <buffer>  call s:what()
   autocmd BufLeave <buffer>  call s:stop_location_monitor()
@@ -148,6 +149,12 @@ function! s:on_update(channel, message)
   endif
 
   call s:render(b:vram)
+
+  if !b:cursor_adjusted && b:pchar isnot 0
+    call search('@', 'w')
+    setlocal cursorline cursorcolumn
+    let b:cursor_adjusted = 1
+  endif
 endfunction
 
 function! s:stop_location_monitor()
